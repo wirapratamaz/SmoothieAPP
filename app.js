@@ -27,6 +27,7 @@ mongoose.connect(dbURI, {
 
 // routes
 app.get('/', (req, res) => res.render('home'));
+app.get('/smoothies', (req, res) => res.render('smoothies'));
 
 // listen for requests
 app.listen(port, () => {
