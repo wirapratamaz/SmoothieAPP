@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const port = 5000;
@@ -28,6 +29,9 @@ mongoose.connect(dbURI, {
 // routes
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
+
+//middleware function.
+app.use(authRoutes);
 
 // listen for requests
 app.listen(port, () => {
