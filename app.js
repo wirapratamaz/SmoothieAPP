@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 mongoose.Promise = global.Promise;
 mongoose.set('strictQuery', false);
 
-const dbURI = 'mongodb://127.0.0.1:27017/smoothie_db';
+const dbURI = 'mongodb+srv://wirapratamaz:wiradenkayu1850@cluster0.ftvonfo.mongodb.net/smoothie_db';
 mongoose.connect(dbURI, {
 	useNewUrlParser: true,
     useUnifiedTopology: true
