@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 //validator function isEmail
 const { isEmail } = require('validator');
+const bcrypt = require('bcrypt');
 
 //how to give array to function
 const userSchema = new mongoose.Schema({
@@ -26,11 +27,15 @@ userSchema.post('save', function(doc, next) {
     next();
 });
 
-//before a new user is created
-userSchema.pre('save', function(next){
-    console.log('user about to be created & saved', this);
+//encrypting the password of a new user before saving it
+userSchema.pre('save', async function(next){
+    // Generate a salt value
+    const salt = await bcrypt.genSalt();
+    // Hash the password with the salt value
+    this.password = await bcrypt.hash(this.password, salt);
     next();
 });
+
 const User = mongoose.model('user', userSchema);
 
 module.exports = User;
